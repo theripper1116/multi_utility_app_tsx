@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function UtilityApps() {
-  const [textFromTextArea, changeTextArea] = useState("default");
+  const [textFromTextArea, changeTextArea] = useState<string>("default");
   const storeTextAreaContent = (event) => {
     changeTextArea(event.target.value);
   };
@@ -10,8 +10,9 @@ function UtilityApps() {
     textFromTextArea !== "default" &&
     textFromTextArea !== "DEFAULT" &&
     textFromTextArea !== ""
-      ? (document.getElementById("changedText").innerHTML = textFromTextArea)
-      : (document.getElementById("changedText").innerHTML =
+      ? // here ! before innerHTML is non null assertion operator
+        (document.getElementById("changedText")!.innerHTML = textFromTextArea)
+      : (document.getElementById("changedText")!.innerHTML =
           "Please enter some text");
   };
   const convertToLowercase = () => {
@@ -19,8 +20,8 @@ function UtilityApps() {
     textFromTextArea !== "default" &&
     textFromTextArea !== "DEFAULT" &&
     textFromTextArea !== ""
-      ? (document.getElementById("changedText").innerHTML = textFromTextArea)
-      : (document.getElementById("changedText").innerHTML =
+      ? (document.getElementById("changedText")!.innerHTML = textFromTextArea)
+      : (document.getElementById("changedText")!.innerHTML =
           "Please enter some text");
   };
   const countChar = () => {
@@ -29,7 +30,7 @@ function UtilityApps() {
       textFromTextArea === "DEFAULT" ||
       textFromTextArea === ""
     )
-      document.getElementById("changedText").innerHTML =
+      document.getElementById("changedText")!.innerHTML =
         "Words: -" + 0 + "Character: -" + 0;
     else {
       let wordCount = textFromTextArea.split(" ");
@@ -37,7 +38,7 @@ function UtilityApps() {
       for (let x in wordCount) {
         charCount += wordCount[x].length;
       }
-      document.getElementById("changedText").innerHTML =
+      document.getElementById("changedText")!.innerHTML =
         "Words: - " + wordCount.length + "Character: -" + charCount;
     }
   };
@@ -45,21 +46,21 @@ function UtilityApps() {
     textFromTextArea !== "default" &&
     textFromTextArea !== "DEFAULT" &&
     textFromTextArea !== ""
-      ? (document.getElementById("changedText").innerHTML = textFromTextArea
+      ? (document.getElementById("changedText")!.innerHTML = textFromTextArea
           .split(" ")
           .join(" "))
-      : (document.getElementById("changedText").innerHTML =
+      : (document.getElementById("changedText")!.innerHTML =
           "Please enter some text");
   };
   const reverseString = () => {
     textFromTextArea !== "default" &&
     textFromTextArea !== "DEFAULT" &&
     textFromTextArea !== ""
-      ? (document.getElementById("changedText").innerHTML = textFromTextArea
+      ? (document.getElementById("changedText")!.innerHTML = textFromTextArea
           .split("")
           .reverse()
           .join(""))
-      : (document.getElementById("changedText").innerHTML =
+      : (document.getElementById("changedText")!.innerHTML =
           "Please enter some text");
   };
   return (

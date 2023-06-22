@@ -1,19 +1,20 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import Introduction from "./Modules/Introduction";
-import Navbar from "./Modules/Navbar";
+import Introduction from "./Modules/Introduction.tsx";
+import Navbar from "./Modules/Navbar.tsx";
 import Saved from "./Modules/ToDoApp/Saved";
 import Deleted from "./Modules/ToDoApp/Deleted";
 import Archived from "./Modules/ToDoApp/Archived";
+import React from "react";
 
 function App() {
-  const UtilityApps = lazy(() => import("./Modules/UtilityApps"));
-  const Home = lazy(() => import("./Modules/Home"));
+  const UtilityApps = lazy(() => import("./Modules/UtilityApps.tsx"));
+  const Home = lazy(() => import("./Modules/Home.tsx"));
   const FetchYoutubeData = lazy(() =>
-    import("./Modules/Youtube/FetchYoutubeData")
+    import("./Modules/Youtube/FetchYoutubeData.tsx")
   );
-  const Calculator = lazy(() => import("./Modules/Calculator"));
+  const Calculator = lazy(() => import("./Modules/Calculator.tsx"));
   const ToDoApp = lazy(() => import("./Modules/ToDoApp/ToDoApp"));
 
   const [darkMode, changeDarkMode] = useState({

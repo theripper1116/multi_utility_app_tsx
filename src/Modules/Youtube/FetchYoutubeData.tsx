@@ -1,16 +1,17 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 
-import DisplayYoutubeData from "./DisplayYoutubeData";
-import Spinner from "./Spinner";
+import DisplayYoutubeData from "./DisplayYoutubeData.tsx";
+import Spinner from "./Spinner.tsx";
+import DataInterface from "./DataInterface"
 
 function FetchYoutubeData() {
-  const [pageToken, changePageToken] = useState({});
-  const [youtubeData, changeYoutubeData] = useState([]);
-  const [url, changeURL] = useState(
-    `https://youtube.googleapis.com/youtube/v3/videos?chart=mostPopular&regionCode=IN&key=${process.env.REACT_APP_YOUTUBE_API_KEY}&type=video&part=snippet&maxResults=20`
+  const [pageToken, changePageToken] = useState<DataInterface>();
+  const [youtubeData, changeYoutubeData] = useState<Array<object>>([]);
+  const [url, changeURL] = useState<string>(
+    `https://youtube.googleapis.com/youtube/v3/videos?chart=mostPopular&regionCode=IN&key=AIzaSyCOEzKrIzvPXvIdp-cMQKoaz2TS2P-dibo&type=video&part=snippet&maxResults=20`
   );
-  const [trackSpinner, changeSpinner] = useState(false);
+  const [trackSpinner, changeSpinner] = useState<boolean>(false);
   const fetchData = useCallback(async () => {
     try {
       let fetchedData = await axios.get(url);
@@ -27,7 +28,7 @@ function FetchYoutubeData() {
 
   const handlePrevPage = () => {
     changeSpinner(true);
-    changeURL(url.concat(`&pageToken=${pageToken.prevPageToken}`));
+    changeURL(url.concat(`&pageToken=${pageToken?.prevPageToken}`));
     changePageToken({});
     changeYoutubeData([]);
     setTimeout(() => {
@@ -37,7 +38,7 @@ function FetchYoutubeData() {
   };
   const handleNextPage = () => {
     changeSpinner(true);
-    changeURL(url.concat(`&pageToken=${pageToken.nextPageToken}`));
+    changeURL(url.concat(`&pageToken=${pageToken?.nextPageToken}`));
     changePageToken({});
     changeYoutubeData([]);
     setTimeout(() => {

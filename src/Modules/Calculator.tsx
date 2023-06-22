@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 function Calculator() {
-  const [keyNum, changeKeyNum] = useState("");
-  const [operator, changeOperator] = useState("");
-  const [firstNum, changeFirstNum] = useState();
-  const [secondNum, changeSecondNum] = useState();
+  const [keyNum, changeKeyNum] = useState<string>("");
+  const [operator, changeOperator] = useState<string>("");
+  const [firstNum, changeFirstNum] = useState<number>();
+  const [secondNum, changeSecondNum] = useState<number>();
 
   const getNum = (event) => {
     changeKeyNum(keyNum.concat(event.target.value));
@@ -23,16 +23,18 @@ function Calculator() {
         pos = x;
       }
     }
-    changeOperator((arrayNum[pos]));
+    changeOperator(arrayNum[pos]);
     changeFirstNum(parseInt(arrayNum.splice(0, pos).join("")));
     changeSecondNum(parseInt(arrayNum.splice(1).join("")));
-    document.getElementById("result").innerHTML = eval(`${firstNum}${operator}${secondNum}`);
+    document.getElementById("result")!.innerHTML = eval(
+      `${firstNum}${operator}${secondNum}`
+    );
   };
-  
+
   const clearScreen = () => {
     changeKeyNum("");
-    document.getElementById("result").innerHTML = "";
-  }
+    document.getElementById("result")!.innerHTML = "";
+  };
   return (
     <>
       <textarea
@@ -63,9 +65,7 @@ function Calculator() {
               </button>
             </td>
             <td>
-              <button onClick={clearScreen}>
-                Clear
-              </button>
+              <button onClick={clearScreen}>Clear</button>
             </td>
           </tr>
           <tr>

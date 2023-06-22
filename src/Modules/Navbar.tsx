@@ -1,20 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import DarkMode from "./DarkMode";
+import DarkMode from "./DarkMode.tsx";
 
 function Navbar(props) {
   const changeHeaderTitle = (event) => {
-    if (document.getElementById("Home").innerHTML === "Home")
-      document.title = document.getElementById("Home").innerHTML;
-    else if (document.getElementById("utility").innerHTML === "Utility Apps")
-      document.title = document.getElementById("utility").innerHTML;
-    else if (document.getElementById("API").innerHTML === "Experience API")
-      document.title = document.getElementById("API").innerHTML;
+    if (document.getElementById("Home")!.innerHTML === "Home")
+      document.title = document.getElementById("Home")!.innerHTML;
+    else if (document.getElementById("utility")!.innerHTML === "Utility Apps")
+      document.title = document.getElementById("utility")!.innerHTML;
+    else if (document.getElementById("API")!.innerHTML === "Experience API")
+      document.title = document.getElementById("API")!.innerHTML;
     else document.title = "unknown";
   };
   return (
     <>
-      <nav className={`navbar navbar-expand-lg bg-${props.darkMode.backgroundColor} fixed-top`}>
+      <nav
+        className={`navbar navbar-expand-lg bg-${props.darkMode.backgroundColor} fixed-top`}
+      >
         <div className="container-fluid">
           <button
             className="navbar-toggler"
@@ -97,7 +99,10 @@ function Navbar(props) {
               </li>
             </ul>
           </div>
-          <DarkMode toggleDarkMode={props.toggleDarkMode} darkMode={props.darkMode}/>
+          <DarkMode
+            toggleDarkMode={props.toggleDarkMode}
+            darkMode={props.darkMode}
+          />
         </div>
       </nav>
     </>
