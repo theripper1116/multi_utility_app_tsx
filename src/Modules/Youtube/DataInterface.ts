@@ -1,4 +1,4 @@
-interface YoutubeData {
+interface AllData {
     "kind": string,
     "etag": string,
     "items": [
@@ -41,4 +41,4 @@ interface YoutubeData {
     }
 }
 
-export default YoutubeData;
+export default AllData;
