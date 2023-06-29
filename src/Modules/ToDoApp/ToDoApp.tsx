@@ -22,14 +22,14 @@ function entryData(data, index) {
 
 function ToDoApp(props) {
   const [state, dispatch] = useReducer(reducer, []);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState<number>(0);
 
   const saveTheDoc = () => {
     setIndex(index + 1);
     dispatch({
       type: "Save",
       docData: {
-        data: document.getElementById("saveTheDoc")!.value,
+        data: (document.getElementById("saveTheDoc") as HTMLInputElement).value,
         index: index,
       },
     });
@@ -79,6 +79,12 @@ function ToDoApp(props) {
       </button>
     </>
   );
+}
+
+interface SavedData {
+  id: number;
+  modifiedDate: string;
+  data: string;
 }
 
 export default ToDoApp;

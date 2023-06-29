@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Introduction from "./Modules/Introduction.tsx";
 import Navbar from "./Modules/Navbar.tsx";
-import Saved from "./Modules/ToDoApp/Saved";
+import Saved from "./Modules/ToDoApp/Saved.tsx";
 import Deleted from "./Modules/ToDoApp/Deleted";
 import Archived from "./Modules/ToDoApp/Archived";
 import React from "react";
@@ -42,7 +42,7 @@ function App() {
   const [toDoAppData, changeToDoAppData] = useState([]);
 
   const receiveDocData = (docData) => {
-    changeToDoAppData(docData);
+    changeToDoAppData(...[docData]);
   };
 
   useEffect(() => {
