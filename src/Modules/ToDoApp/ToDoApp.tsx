@@ -29,7 +29,7 @@ function ToDoApp(props) {
     dispatch({
       type: "Save",
       docData: {
-        data: document.getElementById("saveTheDoc").value,
+        data: document.getElementById("saveTheDoc")!.value,
         index: index,
       },
     });

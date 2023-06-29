@@ -72,6 +72,16 @@ function Navbar(props) {
                   ToDoApp
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link
+                  className={`nav-link text-${props.darkMode.color}}`}
+                  to="/LiveClock"
+                  onClick={changeHeaderTitle}
+                  id="LiveClock"
+                >
+                  Live Digital Clock
+                </Link>
+              </li>
               <li className="nav-item dropdown">
                 <a
                   className={`nav-link dropdown-toggle text-${props.darkMode.color}`}

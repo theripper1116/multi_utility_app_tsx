@@ -11,11 +11,12 @@ import React from "react";
 function App() {
   const UtilityApps = lazy(() => import("./Modules/UtilityApps.tsx"));
   const Home = lazy(() => import("./Modules/Home.tsx"));
-  const FetchYoutubeData = lazy(() =>
-    import("./Modules/Youtube/FetchYoutubeData.tsx")
+  const FetchYoutubeData = lazy(
+    () => import("./Modules/Youtube/FetchYoutubeData.tsx")
   );
   const Calculator = lazy(() => import("./Modules/Calculator.tsx"));
-  const ToDoApp = lazy(() => import("./Modules/ToDoApp/ToDoApp"));
+  const ToDoApp = lazy(() => import("./Modules/ToDoApp/ToDoApp.tsx"));
+  const LiveClock = lazy(() => import("./Modules/LiveClock.tsx"));
 
   const [darkMode, changeDarkMode] = useState({
     color: "dark",
@@ -80,6 +81,9 @@ function App() {
               />
               <Route path="/ToDoApp/Deleted" element=<Deleted /> />
               <Route path="/ToDoApp/Archived" element=<Archived /> />
+            </Routes>
+            <Routes>
+              <Route path="/LiveClock" element=<LiveClock /> />
             </Routes>
           </Suspense>
         </Router>
