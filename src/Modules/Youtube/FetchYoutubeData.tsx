@@ -3,12 +3,14 @@ import axios from "axios";
 
 import DisplayYoutubeData from "./DisplayYoutubeData.tsx";
 import Spinner from "./Spinner.tsx";
-import DataInterface from "./DataInterface"
-import YoutubeDataInterface from "./YoutubeDataInterface"
+import DataInterface from "./DataInterface";
+import YoutubeDataInterface from "./YoutubeDataInterface";
 
-function FetchYoutubeData() {
+function FetchYoutubeData(props) {
   const [pageToken, changePageToken] = useState<DataInterface>();
-  const [youtubeData, changeYoutubeData] = useState<Array<YoutubeDataInterface>>([]);
+  const [youtubeData, changeYoutubeData] = useState<
+    Array<YoutubeDataInterface>
+  >([]);
   const [url, changeURL] = useState<string>(
     `https://youtube.googleapis.com/youtube/v3/videos?chart=mostPopular&regionCode=IN&key=AIzaSyCOEzKrIzvPXvIdp-cMQKoaz2TS2P-dibo&type=video&part=snippet&maxResults=20`
   );
@@ -58,6 +60,7 @@ function FetchYoutubeData() {
                 <DisplayYoutubeData
                   element={element}
                   trackSpinner={trackSpinner}
+                  darkMode={props.darkMode}
                 />
               </div>
             </div>

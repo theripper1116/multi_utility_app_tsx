@@ -18,7 +18,10 @@ function App() {
   const ToDoApp = lazy(() => import("./Modules/ToDoApp/ToDoApp.tsx"));
   const LiveClock = lazy(() => import("./Modules/LiveClock.tsx"));
 
-  const [darkMode, changeDarkMode] = useState({
+  const [darkMode, changeDarkMode] = useState<{
+    color: string;
+    backgroundColor: string;
+  }>({
     color: "dark",
     backgroundColor: "white",
   });
@@ -65,25 +68,37 @@ function App() {
               <Route path="/UtilityApps" element=<UtilityApps /> />
             </Routes>
             <Routes>
-              <Route path="/Youtube" element=<FetchYoutubeData /> />
+              <Route
+                path="/Youtube"
+                element=<FetchYoutubeData darkMode={darkMode} />
+              />
             </Routes>
             <Routes>
-              <Route path="/Calculator" element=<Calculator /> />
+              <Route
+                path="/Calculator"
+                element=<Calculator darkMode={darkMode} />
+              />
             </Routes>
             <Routes>
               <Route
                 path="/ToDoApp"
-                element=<ToDoApp receiveDocData={receiveDocData} />
+                element=<ToDoApp
+                  receiveDocData={receiveDocData}
+                  darkMode={darkMode}
+                />
               />
               <Route
                 path="/ToDoApp/Saved"
-                element=<Saved toDoAppData={toDoAppData} />
+                element=<Saved toDoAppData={toDoAppData} darkMode={darkMode} />
               />
               <Route path="/ToDoApp/Deleted" element=<Deleted /> />
               <Route path="/ToDoApp/Archived" element=<Archived /> />
             </Routes>
             <Routes>
-              <Route path="/LiveClock" element=<LiveClock /> />
+              <Route
+                path="/LiveClock"
+                element=<LiveClock darkMode={darkMode} />
+              />
             </Routes>
           </Suspense>
         </Router>
