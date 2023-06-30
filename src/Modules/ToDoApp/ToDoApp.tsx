@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 function reducer(state, action) {
   switch (action.type) {
     case "Save":
-      console.log(action.docData.data);
       return [...state, entryData(action.docData.data, action.docData.index)];
     default:
       return state;
@@ -17,6 +16,7 @@ function entryData(data, index) {
     id: index + 1,
     modifiedDate: UTCDate.toUTCString(),
     data: data,
+    actionName: "saveTheData",
   };
 }
 
@@ -79,12 +79,6 @@ function ToDoApp(props) {
       </button>
     </>
   );
-}
-
-interface SavedData {
-  id: number;
-  modifiedDate: string;
-  data: string;
 }
 
 export default ToDoApp;

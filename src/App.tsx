@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState, useReducer } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Introduction from "./Modules/Introduction.tsx";
@@ -7,6 +7,13 @@ import Saved from "./Modules/ToDoApp/Saved.tsx";
 import Deleted from "./Modules/ToDoApp/Deleted";
 import Archived from "./Modules/ToDoApp/Archived";
 import React from "react";
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "Save":
+      return action.data;
+  }
+}
 
 function App() {
   const UtilityApps = lazy(() => import("./Modules/UtilityApps.tsx"));
@@ -42,15 +49,25 @@ function App() {
     }
   };
 
-  const [toDoAppData, changeToDoAppData] = useState([]);
+  const [state, dispatch] = useReducer(reducer, []);
 
   const receiveDocData = (docData) => {
-    changeToDoAppData(...[docData]);
+    docData.map((element, index) => {
+      if (element.actionName === "saveTheData") {
+        dispatch({
+          type: "Save",
+          data: docData,
+        });
+      }
+      else if(element.actionName === ""){
+
+      }
+    });
   };
 
-  useEffect(() => {
-    console.log(toDoAppData);
-  }, [toDoAppData]);
+  // useEffect(() => {
+  //   console.log(toDoAppData);
+  // }, [toDoAppData]);
 
   return (
     <>
@@ -89,7 +106,7 @@ function App() {
               />
               <Route
                 path="/ToDoApp/Saved"
-                element=<Saved toDoAppData={toDoAppData} darkMode={darkMode} />
+                element=<Saved state={state} darkMode={darkMode} receiveDocData={receiveDocData}/>
               />
               <Route path="/ToDoApp/Deleted" element=<Deleted /> />
               <Route path="/ToDoApp/Archived" element=<Archived /> />
@@ -105,6 +122,12 @@ function App() {
       </div>
     </>
   );
+}
+
+interface SavedData {
+  id: number;
+  modifiedDate: string;
+  data: string;
 }
 
 export default App;
