@@ -33,6 +33,7 @@ function ToDoApp(props) {
         index: index,
       },
     });
+    (document.getElementById("saveTheDoc") as HTMLInputElement).value = "";
   };
 
   useEffect(() => {

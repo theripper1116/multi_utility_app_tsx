@@ -107,6 +107,16 @@ function Navbar(props) {
                   </li>
                 </ul>
               </li>
+              <li className="nav-item">
+                <Link
+                  className={`nav-link text-${props.darkMode.color}}`}
+                  to="/Dice-Game"
+                  onClick={changeHeaderTitle}
+                  id="Dice-Game"
+                >
+                  Dice Game
+                </Link>
+              </li>
             </ul>
           </div>
           <DarkMode

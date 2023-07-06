@@ -3,7 +3,10 @@ import React, { useEffect } from "react";
 function Saved(props) {
   const deleteDocData = () => {
     // props.receiveDocData(()=>{
-
+    //   return [{
+    //     id: "",
+    //     actionName: "Delete"
+    //   }];
     // });
   }
   const archiveDocData = () => {};
@@ -30,7 +33,7 @@ function Saved(props) {
                   </footer>
                   <button className="btn btn-dark" onClick={deleteDocData}>
                     Delete
-                  </button>
+                  </button>                 
                   <button
                     className="btn btn-dark mx-2"
                     onClick={archiveDocData}

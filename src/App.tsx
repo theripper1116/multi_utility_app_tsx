@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Introduction from "./Modules/Introduction.tsx";
 import Navbar from "./Modules/Navbar.tsx";
-import Saved from "./Modules/ToDoApp/Saved.tsx";
-import Deleted from "./Modules/ToDoApp/Deleted";
-import Archived from "./Modules/ToDoApp/Archived";
+import Saved from "./Modules/toDoApp/Saved.tsx";
+import Deleted from "./Modules/toDoApp/Deleted";
+import Archived from "./Modules/toDoApp/Archived";
 import React from "react";
 
 function reducer(state, action) {
@@ -19,11 +19,12 @@ function App() {
   const UtilityApps = lazy(() => import("./Modules/UtilityApps.tsx"));
   const Home = lazy(() => import("./Modules/Home.tsx"));
   const FetchYoutubeData = lazy(
-    () => import("./Modules/Youtube/FetchYoutubeData.tsx")
+    () => import("./Modules/youtube/FetchYoutubeData.tsx")
   );
   const Calculator = lazy(() => import("./Modules/Calculator.tsx"));
-  const ToDoApp = lazy(() => import("./Modules/ToDoApp/ToDoApp.tsx"));
+  const ToDoApp = lazy(() => import("./Modules/toDoApp/ToDoApp.tsx"));
   const LiveClock = lazy(() => import("./Modules/LiveClock.tsx"));
+  const GameUI = lazy(()=> import("./Modules/game/GameUI.tsx"));
 
   const [darkMode, changeDarkMode] = useState<{
     color: string;
@@ -59,9 +60,12 @@ function App() {
           data: docData,
         });
       }
-      else if(element.actionName === ""){
-
-      }
+      // else if(element.actionName === "Delete"){
+      //   dispatch({
+      //     type: "Delete",
+      //     data: "",
+      //   })
+      // }
     });
   };
 
@@ -117,6 +121,12 @@ function App() {
                 element=<LiveClock darkMode={darkMode} />
               />
             </Routes>
+            <Routes>
+              <Route
+                path="/Dice-Game"
+                element=<GameUI darkMode={darkMode} />
+              />
+            </Routes>
           </Suspense>
         </Router>
       </div>
@@ -124,10 +134,10 @@ function App() {
   );
 }
 
-interface SavedData {
-  id: number;
-  modifiedDate: string;
-  data: string;
-}
+// interface SavedData {
+//   id: number;
+//   modifiedDate: string;
+//   data: string;
+// }
 
 export default App;

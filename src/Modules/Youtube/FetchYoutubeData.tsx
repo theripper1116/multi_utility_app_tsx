@@ -3,8 +3,8 @@ import axios from "axios";
 
 import DisplayYoutubeData from "./DisplayYoutubeData.tsx";
 import Spinner from "./Spinner.tsx";
-import DataInterface from "./DataInterface";
-import YoutubeDataInterface from "./YoutubeDataInterface";
+import DataInterface from "./DataInterface.tsx";
+import YoutubeDataInterface from "./YoutubeDataInterface.tsx";
 
 function FetchYoutubeData(props) {
   const [pageToken, changePageToken] = useState<DataInterface>();
