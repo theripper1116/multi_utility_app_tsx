@@ -12,7 +12,7 @@ function FetchYoutubeData(props) {
     Array<YoutubeDataInterface>
   >([]);
   const [url, changeURL] = useState<string>(
-    `https://youtube.googleapis.com/youtube/v3/videos?chart=mostPopular&regionCode=IN&key=AIzaSyCOEzKrIzvPXvIdp-cMQKoaz2TS2P-dibo&type=video&part=snippet&maxResults=20`
+    `https://youtube.googleapis.com/youtube/v3/videos?chart=mostPopular&regionCode=IN&key=${process.env.REACT_APP_YOUTUBE_API_TOKEN}&type=video&part=snippet&maxResults=20`
   );
   const [trackSpinner, changeSpinner] = useState<boolean>(false);
   const fetchData = useCallback(async () => {
